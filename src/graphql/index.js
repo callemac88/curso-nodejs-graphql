@@ -4,16 +4,26 @@ const {
 } = require('apollo-server-core');
 
 const typeDefs = `
-type Query {
-  hello: String!
-  getPerson(name: String, age: Int): String
-  getInt(age: Int!): Int
-  getFloat(price: Float): Float
-  getString: String
-  getBoolean: Boolean
-  getId: ID
-  getNumbers(numbers: [Int!]!): [Int]
-}
+  type Query {
+    hello: String!
+    getPerson(name: String, age: Int): String
+    getInt(age: Int!): Int
+    getFloat(price: Float): Float
+    getString: String
+    getBoolean: Boolean
+    getId: ID
+    getNumbers(numbers: [Int!]!): [Int]
+    getProduct: Product
+  }
+
+  type Product {
+    id: ID!
+    name: String!
+    price: Float!
+    description: String!
+    image: String!
+    createdAt: String!
+  }
 `;
 
 // relation between REST and GQL
@@ -35,6 +45,16 @@ const resolvers = {
     getBoolean: () => true,
     getId: () => '123456',
     getNumbers: (_, args) => args.numbers,
+    getProduct: () => {
+      return {
+        id: '123',
+        name: 'Product-1',
+        price: 11.3,
+        description: 'This is the first product',
+        image: 'http://image.png',
+        createdAt: new Date().toISOString(),
+      };
+    },
   },
 };
 
