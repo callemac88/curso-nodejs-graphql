@@ -21,7 +21,9 @@ type Product {
 }
 
 type Mutation {
-  addProduct(dto: CreateProductInput!): Product!
+  addProduct(dto: CreateProductInput!): Product
+  updateProduct(id: ID!, dto: UpdateProductInput!): Product
+  deleteProduct(id: ID!): ID
 }
 
 input CreateProductInput {
@@ -30,4 +32,12 @@ input CreateProductInput {
   description: String!
   image: String!
   categoryId: ID!
+}
+
+input UpdateProductInput {
+  name: String
+  price: Float
+  description: String
+  image: String
+  categoryId: ID
 }
