@@ -19,3 +19,15 @@ type Product {
   image: String!
   createdAt: String!
 }
+
+type Mutation {
+  addProduct(dto: CreateProductInput!): Product!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  description: String!
+  image: String!
+  categoryId: ID!
+}

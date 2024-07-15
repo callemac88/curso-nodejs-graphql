@@ -9,4 +9,8 @@ const products = async () => {
   return await service.find({});
 };
 
-module.exports = { product, products };
+const addProduct = async (_, { dto }) => {
+  return await service.create(dto);
+};
+
+module.exports = { product, products, addProduct };
